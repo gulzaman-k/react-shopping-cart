@@ -11,27 +11,6 @@ jobs:
                   sudo docker build -t gulzamank/shopping-app:latest .
                   echo $dockerhubpass |sudo docker login -u $username -p $dockerhubpass
                   sudo docker push gulzamank/shopping-app:latest
-      # - run:
-      #     name: build and push rabbitmq docker image
-      #     command: |
-      #             cd external_libs/docker/containers/rabbit/
-      #             sudo docker build -t gulzamank/cloudfrisk-rabbitmq:latest .
-      #             sudo docker login -u $username -p $dockerhubpass
-      #             sudo docker push gulzamank/cloudfrisk-rabbitmq:latest
-      # - run:
-      #     name: build and push celery docker image
-      #     command: |
-      #             cd external_libs/docker/containers/celery/
-      #             sudo docker build -t gulzamank/cloudfrisk-celery:latest .
-      #             sudo docker login -u $username -p $dockerhubpass
-      #             sudo docker push gulzamank/cloudfrisk-celery:latest
-      # - run:
-      #     name: build and push daphne docker image
-      #     command: |
-      #             cd external_libs/docker/containers/daphne/
-      #             sudo docker build -t gulzamank/cloudfrisk-daphne:latest .
-      #             sudo docker login -u $username -p $dockerhubpass
-      #             sudo docker push gulzamank/cloudfrisk-daphne:latest
       - store_artifacts:
           path: test-reports
           destination: test-reports
