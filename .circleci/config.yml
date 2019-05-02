@@ -8,12 +8,12 @@ jobs:
           fingerprints:
             - "75:1c:bf:ca:cc:24:12:7b:e4:d4:53:f3:32:25:11:53"
       - checkout
-      # - run:
-      #     name: build and push docker image
-      #     command: |
-      #             sudo docker build -t gulzamank/shopping-app:latest .
-      #             echo $dockerhubpass |sudo docker login -u $username -p $dockerhubpass
-      #             sudo docker push gulzamank/shopping-app:latest
+      - run:
+          name: build and push docker image
+          command: |
+                  sudo docker build -t gulzamank/shopping-app:latest .
+                  echo $dockerhubpass |sudo docker login -u $username -p $dockerhubpass
+                  sudo docker push gulzamank/shopping-app:latest
       - run:
           name: ssh into ec2 machine and run docker
           command: |
