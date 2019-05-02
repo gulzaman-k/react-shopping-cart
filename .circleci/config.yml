@@ -7,7 +7,6 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "75:1c:bf:ca:cc:24:12:7b:e4:d4:53:f3:32:25:11:53"
-
       - checkout
       # - run:
       #     name: build and push docker image
@@ -18,7 +17,7 @@ jobs:
       - run:
           name: ssh into ec2 machine and run docker
           command: |
-                  sudo ssh -o StrictHostKeyChecking=no ubuntu@52.211.205.70
+                  sudo ssh ubuntu@52.211.205.70
                   sudo docker pull gulzamank/shopping-app:latest
                   sudo docker run -p 8080:8080 gulzamank/shopping-app
       - store_artifacts:
