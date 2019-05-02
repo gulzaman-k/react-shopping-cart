@@ -17,7 +17,7 @@ jobs:
           command: npm run build && ls
       - run: 
           name: install aws cli
-          command: sudo apt-get install awscli -y
+          command: sudo apt-get install awscli -y && aws s3 ls
       - run:
           name: deploy on s3
           command: aws --region eu-west-1 s3 sync build s3://shopping-web-app/ --delete
