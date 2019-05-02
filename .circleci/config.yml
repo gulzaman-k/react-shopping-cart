@@ -1,23 +1,37 @@
 version: 2
 jobs:
   build:
+    machine: true
     working_directory: ~/react-shopping-cart
-    docker:
-      - image: circleci/node:8.11.3
     steps:
       - checkout
       - run:
-          name: install dependencies
-          command: npm install
-      - run:
-          name: test the dependencies
-          command: npm run test
-      - run:
-          name: build static code
-          command: npm run build
-      - run: 
-          name: install aws cli
-          command: sudo apt-get install awscli -y
-      - run:
-          name: deploy on s3
-          command: aws --region eu-west-1 s3 sync dist s3://cloudfrisk-web-app/ --delete
+          name: Build and push Django Docker image
+          command: |
+                  sudo docker build -t gulzamank/shopping-app:latest .
+                  echo $dockerhubpass |sudo docker login -u $username -p $dockerhubpass
+                  sudo docker push gulzamank/shopping-app:latest
+      # - run:
+      #     name: build and push rabbitmq docker image
+      #     command: |
+      #             cd external_libs/docker/containers/rabbit/
+      #             sudo docker build -t gulzamank/cloudfrisk-rabbitmq:latest .
+      #             sudo docker login -u $username -p $dockerhubpass
+      #             sudo docker push gulzamank/cloudfrisk-rabbitmq:latest
+      # - run:
+      #     name: build and push celery docker image
+      #     command: |
+      #             cd external_libs/docker/containers/celery/
+      #             sudo docker build -t gulzamank/cloudfrisk-celery:latest .
+      #             sudo docker login -u $username -p $dockerhubpass
+      #             sudo docker push gulzamank/cloudfrisk-celery:latest
+      # - run:
+      #     name: build and push daphne docker image
+      #     command: |
+      #             cd external_libs/docker/containers/daphne/
+      #             sudo docker build -t gulzamank/cloudfrisk-daphne:latest .
+      #             sudo docker login -u $username -p $dockerhubpass
+      #             sudo docker push gulzamank/cloudfrisk-daphne:latest
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
