@@ -6,9 +6,6 @@ jobs:
       - image: circleci/node:8.11.3
     steps:
       - checkout
-      # - run:
-      #     name: update dependencies
-      #     command: sudo apt-get update -y
       - run:
           name: install dependencies
           command: npm install
