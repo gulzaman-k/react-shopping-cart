@@ -6,11 +6,17 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Build and push Django Docker image
+          name: build and push docker image
           command: |
                   sudo docker build -t gulzamank/shopping-app:latest .
                   echo $dockerhubpass |sudo docker login -u $username -p $dockerhubpass
                   sudo docker push gulzamank/shopping-app:latest
+      - run:
+          name: ssh into ec2 machine
+          command: |
+                  ssh -o StrictHostKeyChecking=no ubuntu@52.211.205.70
+                  sudo docker pull gulzamank/shopping-app:latest
+                  sudo docker build -p 8080:8080 gulzamank/shopping-app
       - store_artifacts:
           path: test-reports
           destination: test-reports
