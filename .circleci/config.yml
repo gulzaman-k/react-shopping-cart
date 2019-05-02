@@ -12,11 +12,11 @@ jobs:
       #             echo $dockerhubpass |sudo docker login -u $username -p $dockerhubpass
       #             sudo docker push gulzamank/shopping-app:latest
       - run:
-          name: ssh into ec2 machine
+          name: ssh into ec2 machine and run docker
           command: |
                   sudo ssh -o StrictHostKeyChecking=no ubuntu@52.211.205.70
                   sudo docker pull gulzamank/shopping-app:latest
-                  sudo docker build -p 8080:8080 gulzamank/shopping-app
+                  sudo docker run -p 8080:8080 gulzamank/shopping-app
       - store_artifacts:
           path: test-reports
           destination: test-reports
