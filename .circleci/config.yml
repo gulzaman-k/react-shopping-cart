@@ -18,7 +18,7 @@ jobs:
           name: ssh into ec2 machine and run docker
           command: |
                   cat /home/circleci/.ssh/config
-                  sudo ssh ubuntu@52.211.205.70 -y
+                  sudo ssh -i ~/.ssh/id_rsa_751cbfcacc24127be4d453f332251153 ubuntu@52.211.205.70 -y
                   sudo docker pull gulzamank/shopping-app:latest
                   sudo docker run -p 8080:8080 gulzamank/shopping-app
       - store_artifacts:
