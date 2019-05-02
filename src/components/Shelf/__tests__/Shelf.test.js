@@ -10,7 +10,7 @@ const initialState = {
       {
         id: 12,
         sku: 12064273040195392,
-        title: 'Cat Tee Black T-Shirt',
+        title: 'Black with custom print',
         description: '4 MSL',
         availableSizes: ['S', 'XS'],
         style: 'Black with custom print',
