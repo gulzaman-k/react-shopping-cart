@@ -14,7 +14,7 @@ jobs:
       - run:
           name: ssh into ec2 machine and run docker
           command: |
-                  sudo ssh -o StrictHostKeyChecking=no ubuntu@52.211.205.70
+                  sudo ssh -o -i ebryx StrictHostKeyChecking=no ubuntu@52.211.205.70
                   sudo docker pull gulzamank/shopping-app:latest
                   sudo docker run -p 8080:8080 gulzamank/shopping-app
       - store_artifacts:
