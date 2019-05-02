@@ -14,10 +14,10 @@ jobs:
           command: npm run test
       - run:
           name: build static code
-          command: npm run build
+          command: npm run build && ls
       - run: 
           name: install aws cli
           command: sudo apt-get install awscli -y
       - run:
           name: deploy on s3
-          command: aws --region eu-west-1 s3 sync dist s3://cloudfrisk-web-app/ --delete
+          command: aws --region eu-west-1 s3 sync build s3://shopping-web-app/ --delete
